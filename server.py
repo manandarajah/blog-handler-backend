@@ -61,6 +61,7 @@ def authorize():
     flow.redirect_uri = flask.url_for('oauth2callback', _external=True)
 
     authorization_url, state = flow.authorization_url(access_type='offline',include_granted_scopes='true')
+    print(authorization_url)
 
     # Store the state so the callback can verify the auth server response.
     flask.session['state'] = state
