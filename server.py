@@ -101,7 +101,7 @@ def handle_users():
     user = users.find_one({'username':admin_name})
 
     #if user['creds'] is None:
-    authorize()
+    #    authorize()
 
     user_uuid = request.args.get('uuid')
 
@@ -209,43 +209,43 @@ def handle_users_register():
         }
 
         # Generates an email template to send to new users upon successful registration
-        try:
-            user = users.find_one({'username':admin_name})
-            creds = user['creds']
-
-            # Load credentials from the session.
-            credentials = google.oauth2.credentials.Credentials(
-                creds["token"],
-                refresh_token = creds["refresh_token"],
-                token_uri = creds["token_uri"],
-                client_id = creds["client_id"],
-                client_secret = creds["client_secret"],
-                scopes = creds["scopes"]
-            )
-
-            gmail = build(API_SERVICE, API_VERSION, credentials=credentials)
-
-            message = EmailMessage()
-
-            message.set_content('Hi '+formdata['fname']+',\n\nThank you for registering with us!')
-
-            message['To'] = formdata['email']
-            message['Subject'] = "Welcome to Mugiesshan's Blog"
-
-            # encoded message
-            encoded_message = base64.urlsafe_b64encode(message.as_bytes()) \
-                .decode()
-
-            create_message = {
-                'raw': encoded_message
-            }
-            # pylint: disable=E1101
-            send_message = (gmail.users().messages().send
-                            (userId="me", body=create_message).execute())
-            print(F'Message Id: {send_message["id"]}')
-        except HttpError as error:
-            print(F'An error occurred: {error}')
-            send_message = None
+        # try:
+        #     user = users.find_one({'username':admin_name})
+        #     creds = user['creds']
+        #
+        #     # Load credentials from the session.
+        #     credentials = google.oauth2.credentials.Credentials(
+        #         creds["token"],
+        #         refresh_token = creds["refresh_token"],
+        #         token_uri = creds["token_uri"],
+        #         client_id = creds["client_id"],
+        #         client_secret = creds["client_secret"],
+        #         scopes = creds["scopes"]
+        #     )
+        #
+        #     gmail = build(API_SERVICE, API_VERSION, credentials=credentials)
+        #
+        #     message = EmailMessage()
+        #
+        #     message.set_content('Hi '+formdata['fname']+',\n\nThank you for registering with us!')
+        #
+        #     message['To'] = formdata['email']
+        #     message['Subject'] = "Welcome to Mugiesshan's Blog"
+        #
+        #     # encoded message
+        #     encoded_message = base64.urlsafe_b64encode(message.as_bytes()) \
+        #         .decode()
+        #
+        #     create_message = {
+        #         'raw': encoded_message
+        #     }
+        #     # pylint: disable=E1101
+        #     send_message = (gmail.users().messages().send
+        #                     (userId="me", body=create_message).execute())
+        #     print(F'Message Id: {send_message["id"]}')
+        # except HttpError as error:
+        #     print(F'An error occurred: {error}')
+        #     send_message = None
 
         users.insert_one(new_user)
 
