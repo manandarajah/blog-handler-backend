@@ -22,8 +22,7 @@ import flask
 import google.auth
 import google_auth_oauthlib.flow
 
-CLIENT_SECRETS_FILE = 'credentials.json'
-#os.environ.get('CLIENT_SECRETS_FILE')
+CLIENT_SECRETS_FILE = os.environ.get('CLIENT_SECRETS_FILE')
 API_SERVICE="gmail"
 API_VERSION="v1"
 SCOPES = [
