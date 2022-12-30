@@ -100,7 +100,7 @@ def handle_users():
     user = users.find_one({'username':admin_name})
 
     #if user['creds'] is None:
-    authorize()
+    #authorize()
 
     user_uuid = request.args.get('uuid')
 

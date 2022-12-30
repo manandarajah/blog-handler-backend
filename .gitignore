@@ -44,4 +44,4 @@ Thumbs.db
 
 .env
 token.json
-#credentials.json
+credentials.json
