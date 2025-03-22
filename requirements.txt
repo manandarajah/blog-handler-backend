@@ -20,11 +20,11 @@ google-auth-httplib2==0.1.0
 google-auth-oauthlib==0.5.2
 googleapis-common-protos==1.56.2
 greenlet==1.1.2
-gunicorn==22.0.0
+gunicorn==23.0.0
 httplib2==0.20.4
 idna==3.7
 itsdangerous==2.1.2
-Jinja2==3.1.4
+Jinja2==3.1.6
 MarkupSafe==2.1.1
 oauthlib==3.2.2
 pbr==5.9.0
@@ -45,7 +45,7 @@ SQLAlchemy==1.4.36
 stevedore==3.5.0
 uritemplate==4.1.1
 urllib3==1.26.19
-virtualenv==20.14.1
+virtualenv==20.26.6
 virtualenv-clone==0.5.7
 virtualenvwrapper==4.8.4
-Werkzeug==3.0.3
+Werkzeug==3.0.6
